@@ -126,544 +126,397 @@
 
     </section><!-- /Hero Section -->
 
-<!-- Goals Timeline Section -->
-<section class="goals-flip-section">
-  <div class="background-oo"></div>
+  <!-- Goals Timeline Section -->
+  <section class="goals-flip-section">
+    <div class="background-oo"></div>
 
-  <div class="container">
-    <div class="flip-grid">
+    <div class="container">
+      <div class="flip-grid">
 
-      <div class="flip-card">
-        <div class="flip-inner">
-          <div class="flip-front glass">
-            <i class="bi bi-calendar-heart"></i>
-            <p class="counter" data-target="2025">1500</p>
-            <small>Year</small>
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front glass">
+              <i class="bi bi-calendar-heart"></i>
+              <p class="counter" data-target="2025">1500</p>
+              <small>Year</small>
+            </div>
+            <div class="flip-back glass-back">
+              <p></p>
+            </div>
           </div>
-          <div class="flip-back glass-back">
-            <p></p>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front glass">
+              <i class="bi bi-layers-half"></i>
+              <p class="counter" data-target="20">0</p>
+              <small>Projects</small>
+            </div>
+            <div class="flip-back glass-back">
+              <p>20+ active projects</p>
+            </div>
           </div>
+        </div>
+
+        <div class="flip-card">
+          <div class="flip-inner">
+            <div class="flip-front glass">
+              <i class="bi bi-people-fill"></i>
+              <p class="counter" data-target="25">0</p>
+              <small>Staff</small>
+            </div>
+            <div class="flip-back glass-back">
+              <p>25+ dedicated staff members</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+    const counters = document.querySelectorAll('.counter');
+
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      let isPlus = target < 2025; // if <2025, we show "+"
+
+      const updateCount = () => {
+        let current = +counter.innerText.replace('+', '');
+        let increment = Math.ceil(target / 80);
+
+        if (current < target) {
+          counter.innerText = `${current + increment}${isPlus ? '+' : ''}`;
+          setTimeout(updateCount, 40);
+        } else {
+          counter.innerText = `${target}${isPlus ? '+' : ''}`;
+        }
+      };
+
+      updateCount();
+    });
+  </script>
+
+  </section>
+
+  <!-- event card Section -->
+<link href="assets/css/card.css" rel="stylesheet">
+
+  <div class="events-carousel-wrap mt-3">
+    <h1>Upcoming Events</h1>
+    <div class="sub">Check out our latest events and workshops</div>
+
+    <div class="events-carousel" id="events-carousel">
+      <div class="events-viewport">
+        <div class="events-track" id="events-track">
+          <article class="event-card">
+            <div class="media">1</div>
+            <h3>Owl Course</h3>
+            <p>Learn nocturnal navigation and silent flight techniques.</p>
+            <a class="btn" href="#">View</a>
+          </article>
+
+          <article class="event-card">
+            <div class="media">2</div>
+            <h3>Fox Workshop</h3>
+            <p>Enhance your survival skills with smart strategies.</p>
+            <a class="btn" href="#">View</a>
+          </article>
+
+          <article class="event-card">
+            <div class="media">3</div>
+            <h3>Whale Talk</h3>
+            <p>Explore ocean communication through songs, clicks, and whistles.</p>
+            <a class="btn" href="#">View</a>
+          </article>
+
+          <article class="event-card">
+            <div class="media">4</div>
+            <h3>Eagle Mastery</h3>
+            <p>Sharpen focus and soar with aerial lessons and techniques.</p>
+            <a class="btn" href="#">View</a>
+          </article>
         </div>
       </div>
 
-      <div class="flip-card">
-        <div class="flip-inner">
-          <div class="flip-front glass">
-            <i class="bi bi-layers-half"></i>
-            <p class="counter" data-target="20">0</p>
-            <small>Projects</small>
-          </div>
-          <div class="flip-back glass-back">
-            <p>20+ active projects</p>
-          </div>
-        </div>
+      <div class="nav">
+        <button class="arrow prev" id="events-prev">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="arrow next" id="events-next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
       </div>
-
-      <div class="flip-card">
-        <div class="flip-inner">
-          <div class="flip-front glass">
-            <i class="bi bi-people-fill"></i>
-            <p class="counter" data-target="25">0</p>
-            <small>Staff</small>
-          </div>
-          <div class="flip-back glass-back">
-            <p>25+ dedicated staff members</p>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 
   <script>
-  const counters = document.querySelectorAll('.counter');
+  (function(){
+    const track = document.getElementById('events-track');
+  const cards = Array.from(track.querySelectorAll('.event-card'));
+  const next = document.getElementById('events-next');
+  const prev = document.getElementById('events-prev');
 
-  counters.forEach(counter => {
-    const target = +counter.getAttribute('data-target');
-    let isPlus = target < 2025; // if <2025, we show "+"
+  let visibleCount = 3;
+  let index = 0;
 
-    const updateCount = () => {
-      let current = +counter.innerText.replace('+', '');
-      let increment = Math.ceil(target / 80);
-
-      if (current < target) {
-        counter.innerText = `${current + increment}${isPlus ? '+' : ''}`;
-        setTimeout(updateCount, 40);
-      } else {
-        counter.innerText = `${target}${isPlus ? '+' : ''}`;
-      }
-    };
-
-    updateCount();
+  // clone first visible cards to the end for seamless loop
+  const clones = cards.slice(0, visibleCount).map(card => {
+    const clone = card.cloneNode(true);
+    track.appendChild(clone);
+    return clone;
   });
-</script>
 
-</section>
-
-
-<style>
-/* ---------- Unique Carousel Wrapper ---------- */
-.events-carousel-wrap {
-  width: min(1100px, 100%);
-  margin: 0 auto;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-.events-carousel-wrap h1 {
-  font-size: clamp(1.5rem, 1rem + 1.2vw, 2rem);
-  margin-bottom: 12px;
-  color: #3b3054;
-}
-
-.events-carousel-wrap .sub {
-  color: #7d6caa;
-  margin-bottom: 20px;
-}
-
-/* ---------- Carousel Container ---------- */
-.events-carousel {
-  position: relative;
-  background: #fff;
-  border-radius: 20px;
-  padding: 24px 56px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-}
-
-.events-carousel .events-viewport {
-  overflow: hidden;
-  width: 100%;
-}
-
-.events-carousel .events-track {
-  display: flex;
-  gap: 20px;
-  transition: transform 0.5s ease;
-  will-change: transform;
-}
-
-/* ---------- Cards ---------- */
-.events-carousel .event-card {
-  flex: 0 0 calc((100% - (20px * 2)) / 3); /* always 3 cards visible */
-  background: #f9f8ff;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.events-carousel .event-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.1);
-}
-
-.events-carousel .event-card .media {
-  height: 150px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #d9cfff, #f4f1ff);
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  color: #4b3f72;
-  margin-bottom: 14px;
-  user-select: none;
-}
-
-.events-carousel .event-card h3 {
-  margin: 0 0 6px;
-  font-size: 1.1rem;
-  color: #3b3054;
-}
-
-.events-carousel .event-card p {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  color: #6b5aa5;
-  margin-bottom: 12px;
-}
-
-/* ---------- Button Style ---------- */
-.events-carousel .event-card .btn {
-  padding: 10px 16px;
-  border-radius: 12px;
-  background: #fff;
-  border: 1px solid #c1a8ff;
-  color: #3b3054;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-.events-carousel .event-card .btn:hover {
-  background: #c1a8ff;
-  color: #fff;
-  box-shadow: 0 0 0 3px rgba(141, 96, 255, 0.2);
-}
-
-/* ---------- Navigation Arrows ---------- */
-.events-carousel .nav {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.events-carousel .arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: auto;
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid #c1a8ff;
-  background: #fff;
-  color: #3b3054;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-}
-
-.events-carousel .arrow:hover {
-  transform: translateY(-50%) scale(1.1);
-  background: #f4f1ff;
-}
-
-.events-carousel .arrow.prev { left: 12px; }
-.events-carousel .arrow.next { right: 12px; }
-
-.events-carousel .arrow svg { width: 20px; height: 20px; }
-
-/* ---------- Responsive ---------- */
-@media (max-width: 1024px) {
-  .events-carousel .event-card {
-    flex: 0 0 calc((100% - (20px * 1)) / 2);
+  function getCardWidth() {
+    return cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap);
   }
-}
-@media (max-width: 640px) {
-  .events-carousel .event-card {
-    flex: 0 0 100%;
+
+  function slideTo(idx) {
+    track.style.transition = 'transform 0.5s ease';
+    track.style.transform = `translateX(${-idx * getCardWidth()}px)`;
+    index = idx;
   }
-  .events-carousel { padding-left: 48px; padding-right: 48px; }
-}
-</style>
 
-<div class="events-carousel-wrap mt-3">
-  <h1>Upcoming Events</h1>
-  <div class="sub">Check out our latest events and workshops</div>
+  // after transition, check if we reached clones
+  track.addEventListener('transitionend', () => {
+    if(index >= cards.length){
+      track.style.transition = 'none';
+      track.style.transform = 'translateX(0px)';
+      index = 0;
+    }
+  });
 
-  <div class="events-carousel" id="events-carousel">
-    <div class="events-viewport">
-      <div class="events-track" id="events-track">
-        <article class="event-card">
-          <div class="media">1</div>
-          <h3>Owl Course</h3>
-          <p>Learn nocturnal navigation and silent flight techniques.</p>
-          <a class="btn" href="#">View</a>
-        </article>
+  next.addEventListener('click', () => slideTo(index + 1));
+  prev.addEventListener('click', () => {
+    if(index === 0){
+      track.style.transition = 'none';
+      track.style.transform = `translateX(${-cards.length * getCardWidth()}px)`;
+      index = cards.length;
+      // force reflow
+      track.offsetHeight;
+    }
+    slideTo(index -1);
+  });
 
-        <article class="event-card">
-          <div class="media">2</div>
-          <h3>Fox Workshop</h3>
-          <p>Enhance your survival skills with smart strategies.</p>
-          <a class="btn" href="#">View</a>
-        </article>
-
-        <article class="event-card">
-          <div class="media">3</div>
-          <h3>Whale Talk</h3>
-          <p>Explore ocean communication through songs, clicks, and whistles.</p>
-          <a class="btn" href="#">View</a>
-        </article>
-
-        <article class="event-card">
-          <div class="media">4</div>
-          <h3>Eagle Mastery</h3>
-          <p>Sharpen focus and soar with aerial lessons and techniques.</p>
-          <a class="btn" href="#">View</a>
-        </article>
-      </div>
-    </div>
-
-    <div class="nav">
-      <button class="arrow prev" id="events-prev">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-      </button>
-      <button class="arrow next" id="events-next">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"/>
-        </svg>
-      </button>
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  const track = document.getElementById('events-track');
-const cards = Array.from(track.querySelectorAll('.event-card'));
-const next = document.getElementById('events-next');
-const prev = document.getElementById('events-prev');
-
-let visibleCount = 3;
-let index = 0;
-
-// clone first visible cards to the end for seamless loop
-const clones = cards.slice(0, visibleCount).map(card => {
-  const clone = card.cloneNode(true);
-  track.appendChild(clone);
-  return clone;
-});
-
-function getCardWidth() {
-  return cards[0].getBoundingClientRect().width + parseFloat(getComputedStyle(track).gap);
-}
-
-function slideTo(idx) {
-  track.style.transition = 'transform 0.5s ease';
-  track.style.transform = `translateX(${-idx * getCardWidth()}px)`;
-  index = idx;
-}
-
-// after transition, check if we reached clones
-track.addEventListener('transitionend', () => {
-  if(index >= cards.length){
-    track.style.transition = 'none';
-    track.style.transform = 'translateX(0px)';
-    index = 0;
-  }
-});
-
-next.addEventListener('click', () => slideTo(index + 1));
-prev.addEventListener('click', () => {
-  if(index === 0){
-    track.style.transition = 'none';
-    track.style.transform = `translateX(${-cards.length * getCardWidth()}px)`;
-    index = cards.length;
-    // force reflow
-    track.offsetHeight;
-  }
-  slideTo(index -1);
-});
-
-// autoplay
-let autoplay = setInterval(() => slideTo(index + 1), 3000);
-track.addEventListener('mouseenter', () => clearInterval(autoplay));
-track.addEventListener('mouseleave', () => autoplay = setInterval(() => slideTo(index + 1), 3000));
+  // autoplay
+  let autoplay = setInterval(() => slideTo(index + 1), 3000);
+  track.addEventListener('mouseenter', () => clearInterval(autoplay));
+  track.addEventListener('mouseleave', () => autoplay = setInterval(() => slideTo(index + 1), 3000));
 
 
-})();
-</script>
+  })();
+  </script>
 
 
-<!-- Goals Overview Section (Customized from Services Alt) -->
-<section id="goals-overview" class="services-alt section bg-light">
+  <!-- Goals Overview Section (Customized from Services Alt) -->
+  <section id="goals-overview" class="services-alt section bg-light">
 
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-    <div class="row">
-      <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="content-block">
-          <h6 class="subtitle">Our Mission Through Sports</h6>
-          <h2 class="title">Empowering Future Champions</h2>
-          <p class="description">
-            We aim to build a disciplined, strong, and inclusive student generation through effective physical education and strategic sports development programs across the Southern Province.
-          </p>
-          <div class="button-wrapper">
-            <a class="btn" href="about.html"><span>Learn More</span></a>
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="content-block">
+            <h6 class="subtitle">Our Mission Through Sports</h6>
+            <h2 class="title">Empowering Future Champions</h2>
+            <p class="description">
+              We aim to build a disciplined, strong, and inclusive student generation through effective physical education and strategic sports development programs across the Southern Province.
+            </p>
+            <div class="button-wrapper">
+              <a class="btn" href="about.html"><span>Learn More</span></a>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-lg-6">
-        <div class="services-list">
+        <div class="col-lg-6">
+          <div class="services-list">
 
-          <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-icon text-white">
-              <i class="bi bi-heart-pulse-fill"></i>
-            </div>
-            <div class="service-content">
-              <h4>Healthy & Disciplined Youth</h4>
-              <p>Fostering physical strength, discipline, and leadership through school sports programs.</p>
-            </div>
-          </div>
-
-          <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="250">
-            <div class="service-icon text-white">
-              <i class="bi bi-award-fill"></i>
-            </div>
-            <div class="service-content">
-              <h4>Motivation & Recognition</h4>
-              <p>Encouraging participation with appreciation, awards, and visible student progress.</p>
-            </div>
-          </div>
-
-          <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-icon text-white">
-              <i class="bi bi-diagram-3-fill"></i>
-            </div>
-            <div class="service-content">
-              <h4>Strategic Sports Planning</h4>
-              <p>From schools to province — organized plans, clubs, resources, and continuous activity.</p>
-            </div>
-          </div>
-
-          <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="350">
-            <div class="service-icon text-white">
-              <i class="bi bi-people-fill"></i>
-            </div>
-            <div class="service-content">
-              <h4>Equal Opportunities</h4>
-              <p>Ensuring access for all, regardless of location or background, with fair and inclusive systems.</p>
-            </div>
-          </div>
-
-          <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-icon text-white">
-              <i class="bi bi-graph-up-arrow"></i>
-            </div>
-            <div class="service-content">
-              <h4>Monitoring & Improvement</h4>
-              <p>Tracking sports progress, guiding quality programs, and refining student performance.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- Testimonials Section -->
-<section id="testimonials" class="testimonials section light-background">
-  <div class="container" data-aos="fade-up" data-aos-delay="100">
-    <div id="testimonialCarousel" class="carousel slide">
-
-      <!-- Carousel inner -->
-      <div class="carousel-inner">
-
-        <!-- Slide 1 -->
-        <div class="carousel-item active">
-          <div class="testimonial-item">
-            <div class="stars">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-            </div>
-            <p>"People throw stones at you and you convert them into milestones."</p>
-            <div class="testimonial-footer">
-              <div class="testimonial-author">
-                <img src="assets/img/quotes/sachin.jpg" alt="Sachin Tendulkar" class="img-fluid rounded-circle" loading="lazy">
-                <div><h5>Sachin Tendulkar</h5><span>Cricket Legend</span></div>
+            <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="200">
+              <div class="service-icon text-white">
+                <i class="bi bi-heart-pulse-fill"></i>
               </div>
-              <div class="quote-icon"><i class="bi bi-quote"></i></div>
+              <div class="service-content">
+                <h4>Healthy & Disciplined Youth</h4>
+                <p>Fostering physical strength, discipline, and leadership through school sports programs.</p>
+              </div>
             </div>
+
+            <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="250">
+              <div class="service-icon text-white">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <div class="service-content">
+                <h4>Motivation & Recognition</h4>
+                <p>Encouraging participation with appreciation, awards, and visible student progress.</p>
+              </div>
+            </div>
+
+            <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <div class="service-icon text-white">
+                <i class="bi bi-diagram-3-fill"></i>
+              </div>
+              <div class="service-content">
+                <h4>Strategic Sports Planning</h4>
+                <p>From schools to province — organized plans, clubs, resources, and continuous activity.</p>
+              </div>
+            </div>
+
+            <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="350">
+              <div class="service-icon text-white">
+                <i class="bi bi-people-fill"></i>
+              </div>
+              <div class="service-content">
+                <h4>Equal Opportunities</h4>
+                <p>Ensuring access for all, regardless of location or background, with fair and inclusive systems.</p>
+              </div>
+            </div>
+
+            <div class="service-item d-flex align-items-center" data-aos="fade-up" data-aos-delay="400">
+              <div class="service-icon text-white">
+                <i class="bi bi-graph-up-arrow"></i>
+              </div>
+              <div class="service-content">
+                <h4>Monitoring & Improvement</h4>
+                <p>Tracking sports progress, guiding quality programs, and refining student performance.</p>
+              </div>
+            </div>
+
           </div>
         </div>
+      </div>
 
-        <!-- Slide 2 -->
-        <div class="carousel-item">
-          <div class="testimonial-item">
-            <div class="stars">
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-              <i class="bi bi-star-fill"></i>
-            </div>
-            <p>"I've grown most not from victories, but setbacks. If winning is God's reward, then losing is how He teaches us."</p>
-            <div class="testimonial-footer">
-              <div class="testimonial-author">
-                <img src="assets/img/quotes/serena.jpg" alt="Serena Williams" class="img-fluid rounded-circle" loading="lazy">
-                <div>
-                  <h5>Serena Williams</h5>
-                  <span>Tennis Champion</span>
+    </div>
+
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials section light-background">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div id="testimonialCarousel" class="carousel slide">
+
+        <!-- Carousel inner -->
+        <div class="carousel-inner">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active">
+            <div class="testimonial-item">
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              </div>
+              <p>"People throw stones at you and you convert them into milestones."</p>
+              <div class="testimonial-footer">
+                <div class="testimonial-author">
+                  <img src="assets/img/quotes/sachin.jpg" alt="Sachin Tendulkar" class="img-fluid rounded-circle" loading="lazy">
+                  <div><h5>Sachin Tendulkar</h5><span>Cricket Legend</span></div>
                 </div>
+                <div class="quote-icon"><i class="bi bi-quote"></i></div>
               </div>
-              <div class="quote-icon"><i class="bi bi-quote"></i></div>
             </div>
           </div>
-        </div>
 
-
-        <!-- Slide 3 -->
-        <div class="carousel-item">
-          <div class="testimonial-item">
-            <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-            <p>"I don’t think limits."</p>
-            <div class="testimonial-footer">
-              <div class="testimonial-author">
-                <img src="assets/img/quotes/usain.jpg" alt="Usain Bolt" class="img-fluid rounded-circle" loading="lazy">
-                <div><h5>Usain Bolt</h5><span>Athletics Legend</span></div>
+          <!-- Slide 2 -->
+          <div class="carousel-item">
+            <div class="testimonial-item">
+              <div class="stars">
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
               </div>
-              <div class="quote-icon"><i class="bi bi-quote"></i></div>
+              <p>"I've grown most not from victories, but setbacks. If winning is God's reward, then losing is how He teaches us."</p>
+              <div class="testimonial-footer">
+                <div class="testimonial-author">
+                  <img src="assets/img/quotes/serena.jpg" alt="Serena Williams" class="img-fluid rounded-circle" loading="lazy">
+                  <div>
+                    <h5>Serena Williams</h5>
+                    <span>Tennis Champion</span>
+                  </div>
+                </div>
+                <div class="quote-icon"><i class="bi bi-quote"></i></div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Slide 4 -->
-        <div class="carousel-item">
-          <div class="testimonial-item">
-            <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-            <p>"If you want to be a great player, you must be ready to fail and learn from it."</p>
-            <div class="testimonial-footer">
-              <div class="testimonial-author">
-                <img src="assets/img/quotes/murali.jpg" alt="Muttiah Muralitharan" class="img-fluid rounded-circle" loading="lazy">
-                <div><h5>Muttiah Muralitharan</h5><span>Cricket Legend</span></div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item">
+            <div class="testimonial-item">
+              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>"I don’t think limits."</p>
+              <div class="testimonial-footer">
+                <div class="testimonial-author">
+                  <img src="assets/img/quotes/usain.jpg" alt="Usain Bolt" class="img-fluid rounded-circle" loading="lazy">
+                  <div><h5>Usain Bolt</h5><span>Athletics Legend</span></div>
+                </div>
+                <div class="quote-icon"><i class="bi bi-quote"></i></div>
               </div>
-              <div class="quote-icon"><i class="bi bi-quote"></i></div>
             </div>
           </div>
-        </div>
 
-        <!-- Slide 5 -->
-        <div class="carousel-item">
-          <div class="testimonial-item">
-            <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-            <p>"You have to believe in the long term plan you have but you need the short term goals to motivate and inspire you."</p>
-            <div class="testimonial-footer">
-              <div class="testimonial-author">
-                <img src="assets/img/quotes/Roger Federer.jpg" alt="Roger Federer" class="img-fluid rounded-circle" loading="lazy">
-                <div><h5>Roger Federer</h5><span>Tennis Legend</span></div>
+          <!-- Slide 4 -->
+          <div class="carousel-item">
+            <div class="testimonial-item">
+              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>"If you want to be a great player, you must be ready to fail and learn from it."</p>
+              <div class="testimonial-footer">
+                <div class="testimonial-author">
+                  <img src="assets/img/quotes/murali.jpg" alt="Muttiah Muralitharan" class="img-fluid rounded-circle" loading="lazy">
+                  <div><h5>Muttiah Muralitharan</h5><span>Cricket Legend</span></div>
+                </div>
+                <div class="quote-icon"><i class="bi bi-quote"></i></div>
               </div>
-              <div class="quote-icon"><i class="bi bi-quote"></i></div>
             </div>
           </div>
-        </div>
 
-        <!-- Slide 6 -->
-        <div class="carousel-item">
-          <div class="testimonial-item">
-            <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
-            <p>"Hard work and training is the price you pay for success."</p>
-            <div class="testimonial-footer">
-              <div class="testimonial-author">
-                <img src="assets/img/quotes/Allyson Felix.jpg" alt="Allyson Felix" class="img-fluid rounded-circle" loading="lazy">
-                <div><h5>Allyson Felix</h5><span>Athletics Champion</span></div>
+          <!-- Slide 5 -->
+          <div class="carousel-item">
+            <div class="testimonial-item">
+              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>"You have to believe in the long term plan you have but you need the short term goals to motivate and inspire you."</p>
+              <div class="testimonial-footer">
+                <div class="testimonial-author">
+                  <img src="assets/img/quotes/Roger Federer.jpg" alt="Roger Federer" class="img-fluid rounded-circle" loading="lazy">
+                  <div><h5>Roger Federer</h5><span>Tennis Legend</span></div>
+                </div>
+                <div class="quote-icon"><i class="bi bi-quote"></i></div>
               </div>
-              <div class="quote-icon"><i class="bi bi-quote"></i></div>
             </div>
           </div>
+
+          <!-- Slide 6 -->
+          <div class="carousel-item">
+            <div class="testimonial-item">
+              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>"Hard work and training is the price you pay for success."</p>
+              <div class="testimonial-footer">
+                <div class="testimonial-author">
+                  <img src="assets/img/quotes/Allyson Felix.jpg" alt="Allyson Felix" class="img-fluid rounded-circle" loading="lazy">
+                  <div><h5>Allyson Felix</h5><span>Athletics Champion</span></div>
+                </div>
+                <div class="quote-icon"><i class="bi bi-quote"></i></div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+
+        
       </div>
-
-      <!-- Controls -->
-      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-
-      
     </div>
-  </div>
-</section>
+  </section>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

@@ -1,0 +1,160 @@
+  /*--------------------------------------------------------------
+# event card carousel Section
+--------------------------------------------------------------*/
+
+/* ---------- Unique Carousel Wrapper ---------- */
+.events-carousel-wrap {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.events-carousel-wrap h1 {
+  font-size: clamp(1.5rem, 1rem + 1.2vw, 2rem);
+  margin-bottom: 12px;
+  color: #3b3054;
+}
+
+.events-carousel-wrap .sub {
+  color: #7d6caa;
+  margin-bottom: 20px;
+}
+
+/* ---------- Carousel Container ---------- */
+.events-carousel {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  padding: 24px 56px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.events-carousel .events-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.events-carousel .events-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+/* ---------- Cards ---------- */
+.events-carousel .event-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 3 cards visible */
+  background: #f9f8ff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.events-carousel .event-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.1);
+}
+
+.events-carousel .event-card .media {
+  height: 150px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d9cfff, #f4f1ff);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: #4b3f72;
+  margin-bottom: 14px;
+  user-select: none;
+}
+
+.events-carousel .event-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+  color: #3b3054;
+}
+
+.events-carousel .event-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #6b5aa5;
+  margin-bottom: 12px;
+}
+
+/* ---------- Button Style ---------- */
+.events-carousel .event-card .btn {
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #c1a8ff;
+  color: #3b3054;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.events-carousel .event-card .btn:hover {
+  background: #c1a8ff;
+  color: #fff;
+  box-shadow: 0 0 0 3px rgba(141, 96, 255, 0.2);
+}
+
+/* ---------- Navigation Arrows ---------- */
+.events-carousel .nav {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.events-carousel .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid #c1a8ff;
+  background: #fff;
+  color: #3b3054;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.events-carousel .arrow:hover {
+  transform: translateY(-50%) scale(1.1);
+  background: #f4f1ff;
+}
+
+.events-carousel .arrow.prev { left: 12px; }
+.events-carousel .arrow.next { right: 12px; }
+
+.events-carousel .arrow svg { width: 20px; height: 20px; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .events-carousel .event-card {
+    flex: 0 0 calc((100% - 20px) / 2); /* 2 cards */
+  }
+}
+
+@media (max-width: 640px) {
+  .events-carousel {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .events-carousel .event-card {
+    flex: 0 0 100%; /* 1 card */
+  }
+  .events-carousel-wrap h1 {
+    font-size: 1.5rem;
+  }
+  .events-carousel-wrap .sub {
+    font-size: 0.95rem;
+  }
+}
