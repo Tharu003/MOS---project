@@ -338,6 +338,22 @@ h6 {
     visibility: visible;
   }
 }
+            /* Style dropdown tab */
+.header .dropdown > a {
+  display: inline-block;
+  background: #6a0dad; /* Purple color */
+  color: #fff !important;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+/* Hover effect */
+.header .dropdown > a:hover {
+  background: #520a9e; /* darker purple on hover */
+  color: #fff !important;
+}
 
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
