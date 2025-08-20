@@ -1,3 +1,24 @@
+
+.glass-bg-alt {
+  /* Gradient covering top-right and bottom-right corners */
+  background: linear-gradient(
+    to right, /* direction */
+    rgba(219, 217, 219, 0.418) 0%,   /* start color */
+    rgba(255, 255, 255, 0.2) 50%,    /* middle color */
+    rgb(255, 255, 255) 100%     /* end color */
+  );
+
+  /* Glassmorphism effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+
+  color: #3e3e3ec3;
+  padding: 50px 0;
+}
+
+
 #home-objectives {
     background: linear-gradient(to right, #f9f9f9, #dcdcdc5a);
     padding: 60px 0;
@@ -26,7 +47,7 @@
   
   .objective-card .icon {
     font-size: 36px;
-    color: #007bff;
+    color: #583e6fb0;
     margin-bottom: 15px;
   }
   
@@ -63,7 +84,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    opacity: 0.05;
+    opacity: 0.07;
     z-index: 0;
     pointer-events: none;
   }
@@ -299,3 +320,57 @@
   opacity: 1;
 }
 
+
+  /*--------------------------------------------------------------
+# Download Section
+--------------------------------------------------------------*/
+
+.download-section {
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background-color: #fff; /* white section background */
+  color: #6a0dad; /* main purple text */
+}
+
+.section-title {
+  color: #3b3b3bc0; /* matches purple theme */
+}
+
+
+.download-btn {
+  background-color: #fff; /* button background */
+  color: #6a0dad; /* button text */
+  padding: 12px 30px;
+  border-radius: 50px;
+  font-weight: 500;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 2px solid #6a0dad; /* purple border */
+  transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #6a0dad; /* purple background on hover */
+  color: #fff; /* white text on hover */
+  transform: scale(1.05);
+}
+
+.download-buttons a i {
+  font-size: 1.2rem;
+}
+
+.glass-bg {
+  /* Gradient background with transparency */
+  background: linear-gradient(rgba(219, 217, 219, 0.208), rgba(253, 250, 253, 0.137), rgba(201, 141, 219, 0.126));
+
+  /* Glassmorphism effect */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+
+  /* Text color */
+  color: #6a0dad;
+}

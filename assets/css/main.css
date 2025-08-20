@@ -1644,7 +1644,7 @@ section,
   border-color: color-mix(in srgb, var(--accent-color), black 10%);
 }
 
-.call-to-action-2 .cta-action .btn-outline-primary {
+.call-to-action-2 .cta-action .btn-outline-secondary {
   border-color: var(--accent-color);
   color: var(--accent-color);
   padding: 0.75rem 1.75rem;
