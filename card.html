@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Card Carousel — 3 Visible, 4 Total</title>
+  <style>
+    :root {
+      --cards-visible: 3;  /* default on desktop */
+      --gap: 16px;
+      --bg: #f7f7f7;      /* white background */
+      --card-bg: #caced3; /* light gray card */
+      --text: #111827;    /* dark text */
+      --muted: #374151;   /* muted dark gray */
+      --accent: #2563eb;  /* blue accent */
+      --btn-bg: #985edb;  /* white button */
+      --btn-border: #010002; /* light gray border */
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Noto Sans, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: var(--bg);
+      color: var(--text);
+      display: grid;
+      place-items: center;
+      padding: 32px 16px;
+    }
+
+    .wrap {
+      width: min(1100px, 100%);
+    }
+
+    h1 { 
+      font-size: clamp(1.25rem, 0.9rem + 1.5vw, 2rem);
+      margin: 0 0 12px 0; 
+      letter-spacing: 0.3px;
+    }
+    .sub { color: var(--muted); margin-bottom: 20px; }
+
+    .carousel {
+      position: relative;
+      background: #beb9b9;
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 18px;
+      padding: 18px 48px; /* space for arrows */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .viewport {
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .track {
+      display: flex;
+      gap: var(--gap);
+      will-change: transform;
+      transition: transform 360ms cubic-bezier(.22,.61,.36,1);
+    }
+
+    .card {
+      flex: 0 0 calc((100% - (var(--gap) * (var(--cards-visible) - 1))) / var(--cards-visible));
+      background: var(--card-bg);
+      border: 1px solid rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .card .media {
+      height: 140px;
+      border-radius: 12px;
+      background: #e5e7eb;
+      display: grid; place-items: center;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #111827;
+      margin-bottom: 12px;
+      user-select: none;
+    }
+
+    .card h3 { margin: 6px 0 6px; font-size: 1rem; }
+    .card p { margin: 0 0 10px; color: var(--muted); font-size: 0.95rem; line-height: 1.35; }
+
+    .card .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .card .btn:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(37,99,235,0.15); }
+
+    .nav {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+
+    .arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      pointer-events: auto;
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: #ffffff;
+      color: var(--text);
+      display: grid; place-items: center;
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+    .arrow:hover { border-color: var(--accent); transform: translateY(-50%) scale(1.05); }
+
+    .arrow.prev { left: 8px; }
+    .arrow.next { right: 8px; }
+
+    .arrow svg { width: 18px; height: 18px; }
+
+    /* Responsive: reduce visible cards on smaller screens */
+    @media (max-width: 1024px) {
+      :root { --cards-visible: 2; }
+    }
+    @media (max-width: 640px) {
+      :root { --cards-visible: 1; }
+      .carousel { padding-left: 56px; padding-right: 56px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    
+    <div class="carousel" id="carousel">
+      <div class="viewport">
+        <div class="track" id="track">
+          <!-- 4 cards -->
+          <article class="card">
+            <div class="media">CARD 1</div>
+            <h3>Owl Course</h3>
+            <p>Short description about the owl course. Learn nocturnal navigation and silent flight.</p>
+            <a class="btn" href="#">View</a>
+          </article>
+
+          <article class="card">
+            <div class="media">CARD 2</div>
+            <h3>Fox Workshop</h3>
+            <p>Track smart moves and survival skills with hands-on tips and tricks.</p>
+            <a class="btn" href="#">View</a>
+          </article>
+
+          <article class="card">
+            <div class="media">CARD 3</div>
+            <h3>Whale Talk</h3>
+            <p>Dive into ocean communication. Songs, clicks, whistles, and more.</p>
+            <a class="btn" href="#">View</a>
+          </article>
+
+          <article class="card">
+            <div class="media">CARD 4</div>
+            <h3>Eagle Mastery</h3>
+            <p>Soar above the clouds and sharpen your focus with aerial lessons.</p>
+            <a class="btn" href="#">View</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="nav">
+        <button class="arrow prev" id="prev" aria-label="Previous">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+        </button>
+        <button class="arrow next" id="next" aria-label="Next">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const track = document.getElementById('track');
+      const cards = Array.from(track.querySelectorAll('.card'));
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      let index = 0;
+
+      function getVisibleCount() {
+        const raw = getComputedStyle(document.documentElement).getPropertyValue('--cards-visible').trim();
+        return parseInt(raw, 10) || 1;
+      }
+
+      function slideTo(newIndex) {
+        const visible = getVisibleCount();
+        const maxIndex = Math.max(0, cards.length - visible);
+
+        if (newIndex < 0) newIndex = maxIndex;
+        if (newIndex > maxIndex) newIndex = 0;
+        index = newIndex;
+
+        const cardWidth = cards[0].getBoundingClientRect().width;
+        const gap = parseFloat(getComputedStyle(track).gap) || 0;
+        const offset = -(index * (cardWidth + gap));
+        track.style.transform = `translateX(${offset}px)`;
+      }
+
+      prev.addEventListener('click', () => slideTo(index - 1));
+      next.addEventListener('click', () => slideTo(index + 1));
+
+      window.addEventListener('resize', () => slideTo(index));
+      window.addEventListener('load', () => slideTo(index));
+
+      slideTo(0);
+    })();
+  </script>
+</body>
+</html>
