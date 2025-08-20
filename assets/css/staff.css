@@ -30,7 +30,7 @@
 
 .staff-photo {
   width: 100%;
-  height: auto;
+  max-height: 250px;
   object-fit: contain;
   border-radius: 12px;
   margin-bottom: 20px;
