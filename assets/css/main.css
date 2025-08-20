@@ -1,15 +1,4 @@
-/**
-* Template Name: Invent
-* Template URL: https://bootstrapmade.com/invent-bootstrap-business-template/
-* Updated: May 12 2025 with Bootstrap v5.3.6
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
 /* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -143,13 +132,31 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  background: rgba(255, 255, 255, 0.2); /* semi-transparent */
-  backdrop-filter: blur(10px); /* frosted glass effect */
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-  padding: 5px 0;
-  transition: all 0.5s;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  padding: 10px 0;
   z-index: 997;
+  background: rgba(255,255,255,0.3); /* fallback for all devices */
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  transition: all 0.5s;
+}
+
+/* Apply glassmorphism only on desktops */
+@media (min-width: 769px) {
+  .header {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.3); /* keep semi-transparent */
+  }
+}
+
+/* Optional: mobile adjustments */
+@media (max-width: 768px) {
+  .header {
+    background: rgba(255,255,255,0.8); /* more opaque for readability */
+    padding: 10px 0;
+  }
 }
 
 
@@ -184,7 +191,21 @@ h6 {
     order: 3;
   }
 }
-            /* Style dropdown tab */
+/* Dropdown visible only on desktop */
+@media (min-width: 769px) {
+  .header .dropdown {
+    display: inline-block; /* visible on desktop */
+  }
+}
+
+/* Hide dropdown on mobile */
+@media (max-width: 768px) {
+  .header .dropdown {
+    display: none; /* hidden on mobile */
+  }
+}
+
+/* Style dropdown tab */
 .header .dropdown > a {
   display: inline-block;
   background: #6a0dad; /* Purple color */
@@ -200,6 +221,7 @@ h6 {
   background: #520a9e; /* darker purple on hover */
   color: #fff !important;
 }
+
 .scrolled .header {
   box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
 }
@@ -713,7 +735,7 @@ h6 {
   color: var(--default-color);
   background-color: var(--background-color);
   position: relative;
-  padding-top: 80px;
+  padding-top: 0px;
 }
 
 .page-title .heading {
@@ -777,7 +799,7 @@ section,
 --------------------------------------------------------------*/
 .section-title {
   text-align: center;
-  padding-bottom: 60px;
+  padding-bottom: 20px;
   position: relative;
 }
 
@@ -823,7 +845,7 @@ section,
 # Hero Section
 --------------------------------------------------------------*/
 .hero {
-  padding-top: 140px;
+  padding-top: 30px;
   position: relative;
   overflow: hidden;
  padding-bottom: 80px;
