@@ -143,10 +143,11 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: rgba(255, 255, 255, 0);
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 0px 0;
+  background: rgba(255, 255, 255, 0.2); /* semi-transparent */
+  backdrop-filter: blur(10px); /* frosted glass effect */
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  padding: 10px 0;
   transition: all 0.5s;
   z-index: 997;
 }
@@ -183,7 +184,22 @@ h6 {
     order: 3;
   }
 }
+            /* Style dropdown tab */
+.header .dropdown > a {
+  display: inline-block;
+  background: #6a0dad; /* Purple color */
+  color: #fff !important;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: 0.3s;
+}
 
+/* Hover effect */
+.header .dropdown > a:hover {
+  background: #520a9e; /* darker purple on hover */
+  color: #fff !important;
+}
 .scrolled .header {
   box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
 }
@@ -338,22 +354,7 @@ h6 {
     visibility: visible;
   }
 }
-            /* Style dropdown tab */
-.header .dropdown > a {
-  display: inline-block;
-  background: #6a0dad; /* Purple color */
-  color: #fff !important;
-  padding: 8px 15px;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: 0.3s;
-}
 
-/* Hover effect */
-.header .dropdown > a:hover {
-  background: #520a9e; /* darker purple on hover */
-  color: #fff !important;
-}
 
 /* Navmenu - Mobile */
 @media (max-width: 1199px) {
